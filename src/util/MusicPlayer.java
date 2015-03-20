@@ -44,6 +44,7 @@ public class MusicPlayer {
 			    bg = new Music(soundDir+ur);
 			    bg.loop();
 				Main.data.musicIsPlaying = true;
+			    System.out.println("Now playing: "+soundDir+ur);
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}

@@ -1,5 +1,8 @@
 package main;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -65,10 +68,12 @@ public class Main extends StateBasedGame {
 		data = new GameData();
 		options = new Options();
 		MusicPlayer.playRandomBG();
+		
 		// <--- Create appcontainer and set values
 		AppGameContainer app = new AppGameContainer(new Main("TheCity"));
 		app.setShowFPS(debug);
-		app.setDisplayMode(FRAME_WIDTH, FRAME_HEIGHT, false);
+		options.resolution = Toolkit.getDefaultToolkit().getScreenSize();
+		app.setDisplayMode((int)options.resolution.getWidth(), (int)options.resolution.getHeight(), false);
 		app.setTargetFrameRate(TARGET_FRAME_RATE);
 		app.setFullscreen(true);
 		app.setVSync(true);

@@ -1,5 +1,6 @@
 package data;
 
+import java.awt.Dimension;
 import java.io.*;
 
 public class Options {
@@ -9,6 +10,7 @@ public class Options {
 	private static final String OPTION_FILE = "settings.ini";
 	ObjectOutputStream outputStream = null;
 	ObjectInputStream inputStream = null;
+	public Dimension resolution;
 
 	public Options() {
 		musicEnabled = true;
@@ -40,6 +42,7 @@ public class Options {
 			String[] temp = (String[]) inputStream.readObject();
 			musicEnabled = temp[0].equals("true");
 			sfxEnabled = temp[1].equals("true");
+			resolution = new Dimension(Integer.parseInt(temp[2]),Integer.parseInt(temp[3]));
 		} catch (FileNotFoundException e) {
 			System.out.println("[Laad] FNF Error: " + e.getMessage());
 		} catch (IOException e) {
@@ -67,6 +70,8 @@ public class Options {
 			String[] temp = new String[10];
 			temp[0] = musicEnabled?"true":"false";
 			temp[1] = sfxEnabled?"true":"false";
+			temp[2] = ""+(int)resolution.getWidth();
+			temp[3] = ""+(int)resolution.getHeight();
 			outputStream.writeObject(temp);
 		} catch (FileNotFoundException e) {
 			System.out.println("[Update] FNF Error: " + e.getMessage()
