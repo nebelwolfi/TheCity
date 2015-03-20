@@ -1,6 +1,7 @@
 package util;
 
 import java.io.File;
+import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -20,11 +21,27 @@ import org.newdawn.slick.SlickException;
 public class MusicPlayer {
 	public static Clip clip;
 	public static Music bg;
-	
+	private static String soundDir = "assets/sounds/";
+
 	public static void playBG() {
 		if (!Main.data.musicIsPlaying && Main.options.musicEnabled) {
 			try {
 			    bg = new Music("sounds/bg.xm");
+			    bg.loop();
+				Main.data.musicIsPlaying = true;
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void playRandomBG() {
+		if (!Main.data.musicIsPlaying && Main.options.musicEnabled) {
+			try {
+			    Random rand = new Random();
+				File bag = new File(soundDir);
+				String ur = bag.list()[rand.nextInt(bag.list().length)];
+			    bg = new Music(soundDir+ur);
 			    bg.loop();
 				Main.data.musicIsPlaying = true;
 			} catch (SlickException e) {

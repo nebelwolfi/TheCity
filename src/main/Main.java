@@ -10,6 +10,7 @@ import data.Options;
 import states.SplashScreen;
 import states.MainMenu;
 import states.Game;
+import util.MusicPlayer;
 
 public class Main extends StateBasedGame {
 	// <--- Window specifications
@@ -63,6 +64,7 @@ public class Main extends StateBasedGame {
 
 		data = new GameData();
 		options = new Options();
+		MusicPlayer.playRandomBG();
 		// <--- Create appcontainer and set values
 		AppGameContainer app = new AppGameContainer(new Main("TheCity"));
 		app.setShowFPS(debug);
