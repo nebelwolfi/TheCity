@@ -5,6 +5,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import data.GameData;
+import data.Options;
 import states.SplashScreen;
 import states.MainMenu;
 import states.Game;
@@ -21,6 +23,11 @@ public class Main extends StateBasedGame {
     public static final int MAINMENU     = 1;
     public static final int GAME         = 2;
 	// --->
+    
+    // <--- Data and options
+	public static GameData data;
+	public static Options options;
+    // --->
 	
 	public static boolean debug = true;
 	
@@ -54,6 +61,8 @@ public class Main extends StateBasedGame {
 		System.err.println(System.getProperty("os.name") + ": "
 				+ System.getProperty("org.lwjgl.librarypath"));
 
+		data = new GameData();
+		options = new Options();
 		// <--- Create appcontainer and set values
 		AppGameContainer app = new AppGameContainer(new Main("TheCity"));
 		app.setShowFPS(debug);
